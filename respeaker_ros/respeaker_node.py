@@ -14,7 +14,8 @@ from respeaker_ros.audio import RespeakerAudio
 class AudioPublisher(Node):
     def __init__(self, suppress_error=True):
         super().__init__('respeaker_publisher')
-
+        
+        #parameters
         self.sensor_frame_id = self.declare_parameter('sensor_frame_id', 'respeaker_base')
         self.speech_prefetch = self.declare_parameter('speech_prefetch', 0.5)
         self.update_period_s = self.declare_parameter('update_period_s', 0.1)
@@ -25,16 +26,16 @@ class AudioPublisher(Node):
         self.doa_xy_offset = self.declare_parameter('doa_xy_offset', 0.0)
         self.doa_yaw_offset = self.declare_parameter('doa_yaw_offset', 90.0)
 
-        self.respeaker = RespeakerInterface()
+        self.respeaker = RespeakerInterface() #mic-array initialisation
 
         with ignore_stderr(enable=suppress_error): # ALSA error suppresion
             self.audio_interface = pyaudio.PyAudio()
 
-        self.stream = self.audio_interface.open(format=pyaudio.paInt16,
+        self.stream = self.audio_interface.open(format=pyaudio.paInt16, 
                                                 channels=1,
                                                 rate=16000,
                                                 input=True,
-                                                frames_per_buffer=1024)
+                                                frames_per_buffer=1024) #audio stream opening
         
         self.timer = self.create_timer(0.1, self.timer_callback)
 
@@ -45,9 +46,9 @@ class AudioPublisher(Node):
         latching_qos = QoSProfile(depth=1,
             durability=QoSDurabilityPolicy.TRANSIENT_LOCAL)
         
-        self.publisher_ = self.create_publisher(AudioData, 'audio', 10)
-        self._pub_vad = self.create_publisher(Bool, 'vad', latching_qos)
-        self._pub_doa_raw = self.create_publisher(Int32, 'doa_raw', latching_qos)
+        self.publisher_ = self.create_publisher(AudioData, 'audio', 10) #audio stream
+        self._pub_vad = self.create_publisher(Bool, 'vad', latching_qos) #can be used for taking only when the mic-array takes signal in
+        self._pub_doa_raw = self.create_publisher(Int32, 'doa_raw', latching_qos) #degree of audio 
 
     def timer_callback(self):
         data = self.stream.read(1024)
