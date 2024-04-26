@@ -6,7 +6,7 @@ Based on [previous](https://github.com/furushchev/respeaker_ros) [wrappers](http
 
 # Prerequisites:
 * For ROS2 Humble installation refer to here: <br/>
-`link`
+https://docs.ros.org/en/humble/Installation.html
 
 * Copy the udev rules from `respeaker_ros/config` into `/etc/udev/rules.d/`. 
 
