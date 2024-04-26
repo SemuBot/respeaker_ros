@@ -2,6 +2,7 @@
 
 ROS2 wrapper for the ReSpeaker 4 Mic Array. Publishes audio and direction-of-arrival information 
 
+Based on [previous](https://github.com/furushchev/respeaker_ros) [wrappers](https://github.com/machinekoder/respeaker) for ROS. <br/>
 
 Prerequisites:
 * Copy the udev rules from `respeaker_ros/config` into `/etc/udev/rules.d/`.
