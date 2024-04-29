@@ -8,12 +8,18 @@ Based on [previous](https://github.com/furushchev/respeaker_ros) [wrappers](http
 * For ROS2 Humble installation refer to here: <br/>
 https://docs.ros.org/en/humble/Installation.html
 
-* Copy the udev rules from `respeaker_ros/config` into `/etc/udev/rules.d/`. 
+* Copy the udev rules from `respeaker_ros/config/40-respeaker.rules` into `/etc/udev/rules.d/`. <br/>
+`!!!` There are different files in the `/config` folder, try putting the `40-respeaker.rules` first, in case of an error, try the second config `60-respeaker.rules`. <br/>
+
+* ```sudo systemctl restart udev``` <br/>
+* Then reconnect your device. <br/>
 
 * ReSpeaker setup:
-1.
-2.
-3.
+1. sudo pip install -r requirements.txt
+2. sudo apt install python3-pyaudio
+3. git clone https://github.com/respeaker/usb_4_mic_array.git
+4. cd usb_4_mic_array
+5. sudo python dfu.py --download 6_channels_firmware.bin  # The 6 channels version 
 
 
 * Build [audio_common](https://github.com/ros-drivers/audio_common) from source until it gets released into ROS2, you need the ros2 branch: <br/>

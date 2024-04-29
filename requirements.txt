@@ -1,0 +1,5 @@
+SpeechRecognition==3.10.3
+click==8.0.3
+numpy==1.21.5
+pixel-ring==0.1.0
+pyusb==1.2.1
