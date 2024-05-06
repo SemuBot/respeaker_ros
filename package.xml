@@ -21,7 +21,7 @@
   <depend>geometry_msgs</depend>
   <depend>portaudio19-dev</depend>
   <depend>python3-pyaudio</depend>
-  <depend>python3-spidev</depend>
+  <depend>python-spidev</depend>
   <depend>tf_transformations</depend>
 
   <export>

@@ -22,12 +22,16 @@ https://docs.ros.org/en/humble/Installation.html
 5. sudo python dfu.py --download 6_channels_firmware.bin  # The 6 channels version 
 
 
+
+
+
 * Build [audio_common](https://github.com/ros-drivers/audio_common) from source until it gets released into ROS2, you need the ros2 branch: <br/>
 1.  ```cd your_workspace```<br/>
 2.  ```mkdir src```<br/>
 3.  ```git clone -b ros2 https://github.com/ros-drivers/audio_common.git```  <br/>
 4.  ```cd ..``` <br/>
-5.  ```colcon build``` <br/>
+5.  ```rosdep install --from-paths src -y --ignore-src``` <br/>
+6.  ```colcon build``` <br/>
 
 * In case of an error on ROS2 Humble regarding `ament_python_install_package` refer to `https://github.com/ros2/rosidl_python/pull/187` (easy fix).
 
