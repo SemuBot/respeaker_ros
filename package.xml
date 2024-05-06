@@ -11,7 +11,7 @@
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_pep257</test_depend>
-  <test_depend>ament_pep8</test_depend>
+  <test_depend>python3-pep8</test_depend>
   <test_depend>ament_pyflakes</test_depend>
   <test_depend>rclpy</test_depend>
   <test_depend>std_msgs</test_depend>
@@ -21,7 +21,7 @@
   <depend>geometry_msgs</depend>
   <depend>portaudio19-dev</depend>
   <depend>python3-pyaudio</depend>
-  <depend>python-spidev</depend>
+  <depend>python-spidev-pip</depend>
   <depend>tf_transformations</depend>
 
   <export>
