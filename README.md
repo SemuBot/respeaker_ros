@@ -25,20 +25,24 @@ https://docs.ros.org/en/humble/Installation.html
 * Build [audio_common](https://github.com/ros-drivers/audio_common) from source until it gets released into ROS2, you need the ros2 branch: <br/>
 1.  ```cd your_workspace```<br/>
 2.  ```mkdir src```<br/>
-3.  ```git clone -b ros2 https://github.com/ros-drivers/audio_common.git```  <br/>
-4.  ```cd ..``` <br/>
+3.  ```cd src```<br/>
+4.  ```git clone -b ros2 https://github.com/ros-drivers/audio_common.git```  <br/>
+
 
 
 * Then: <br/>
-5.  `````` <br/>
-6.  ```colcon build``` <br/>
-7.  ```colcon build``` <br/>
-8.  ```colcon build``` <br/>
+5.  ```git clone https://github.com/SemuBot/semubot_audio.git``` <br/>
+6.  ```cd ..``` <br/>
+7.  ```rosdep install --from-paths src -y --ignore-src``` <br/>
+8.  ```colcon build --packages-select audio_common_msgs audio_capture audio_play``` <br/>
+9.  ```colcon build --packages-select respeaker_ros``` <br/>
 
 
-* Finally: <br/>
-5.  ```rosdep install --from-paths src -y --ignore-src``` <br/>
-6.  ```colcon build``` <br/>
 
+* Finally, open another terminal to run the node: <br/>
+10.  ```source install/local_setup.bash``` <br/>
+11.  ```ros2 run respeaker_ros respeaker_node``` <br/>
+
+* If you need `sound_play` from `audio_common`, then build your workspace with the `colcon build` command, but the sound_play module might cause errors. <br/>
 * In case of an error on ROS2 Humble regarding `ament_python_install_package` refer to `https://github.com/ros2/rosidl_python/pull/187` (easy fix).
 
