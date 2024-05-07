@@ -1,4 +1,4 @@
-# semubot_audio 
+# respeaker_ros
 
 ROS2 wrapper for the ReSpeaker 4 Mic Array. Publishes audio and direction-of-arrival information. 
 
@@ -31,7 +31,7 @@ https://docs.ros.org/en/humble/Installation.html
 
 
 * Then: <br/>
-5.  ```git clone https://github.com/SemuBot/semubot_audio.git``` <br/>
+5.  ```https://github.com/SemuBot/respeaker_ros.git``` <br/>
 6.  ```cd ..``` <br/>
 7.  ```rosdep install --from-paths src -y --ignore-src``` <br/>
 8.  ```colcon build --packages-select audio_common_msgs audio_capture audio_play``` <br/>
