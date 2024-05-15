@@ -9,20 +9,12 @@ import math
 import angles
 
 from respeaker_ros.interface import RespeakerInterface
-from respeaker_ros.audio import RespeakerAudio
 
 class AudioPublisher(Node):
     def __init__(self, suppress_error=True):
         super().__init__('respeaker_publisher')
         
         #parameters
-        self.sensor_frame_id = self.declare_parameter('sensor_frame_id', 'respeaker_base')
-        self.speech_prefetch = self.declare_parameter('speech_prefetch', 0.5)
-        self.update_period_s = self.declare_parameter('update_period_s', 0.1)
-        self.main_channel = self.declare_parameter('main_channel', 0)
-        self.speech_continuation = self.declare_parameter('speech_continuation', 0.5)
-        self.speech_max_duration = self.declare_parameter('speech_max_duration', 7.0)
-        self.speech_min_duration = self.declare_parameter('speech_min_duration', 0.1)
         self.doa_xy_offset = self.declare_parameter('doa_xy_offset', 0.0)
         self.doa_yaw_offset = self.declare_parameter('doa_yaw_offset', 90.0)
 
@@ -39,8 +31,6 @@ class AudioPublisher(Node):
         
         self.timer = self.create_timer(0.1, self.timer_callback)
 
-        self.is_speaking = False
-        self.speech_stopped = self.get_clock().now()
         self.prev_is_voice = None
         self.prev_doa = None
         latching_qos = QoSProfile(depth=1,
@@ -51,7 +41,7 @@ class AudioPublisher(Node):
         self._pub_doa_raw = self.create_publisher(Int32, 'doa_raw', latching_qos) #degree of audio 
 
     def timer_callback(self):
-        data = self.stream.read(1024)
+        data = self.stream.read(1600)
         msg = AudioData()
         msg.data = data
         self.publisher_.publish(msg)
