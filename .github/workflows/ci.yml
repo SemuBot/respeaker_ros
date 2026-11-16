@@ -1,0 +1,10 @@
+name: ci
+on:
+  push:
+    branches: [master]
+  pull_request:
+jobs:
+  ros:
+    uses: SemuBot/semubot-software/.github/workflows/ros-package.yml@main
+    with:
+      package: respeaker_ros
